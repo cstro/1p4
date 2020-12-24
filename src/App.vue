@@ -8,7 +8,7 @@
       {{ cardMode ? 'Show headings' : 'Show cards' }}
     </button>
 
-    <div class="flex mb-10">
+    <div class="flex flex-col sm:flex-row mb-10">
       <RatioPanelInput
         label="base font size"
         name="baseSize"
@@ -142,7 +142,7 @@ export default class App extends Vue {
 
 <style lang="scss">
 :root {
-  --main-bg-color: #fc5c65;
+  --main-bg-color: #3867d6;
   --main-text-color: #FFF;
 }
 
