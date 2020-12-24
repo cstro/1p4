@@ -8,7 +8,7 @@
       {{ cardMode ? 'Show headings' : 'Show cards' }}
     </button>
 
-    <div class="flex flex-col sm:flex-row mb-10">
+    <div class="flex flex-col sm:flex-row mb-10 -ml-8">
       <RatioPanelInput
         label="base font size"
         name="baseSize"
