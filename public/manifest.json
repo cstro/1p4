@@ -1,0 +1,9 @@
+{
+  "name": "1p4 font playground",
+  "short_name": "1p4",
+  "icons": [],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#4DBA87"
+}
