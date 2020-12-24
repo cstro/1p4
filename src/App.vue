@@ -142,7 +142,7 @@ export default class App extends Vue {
 
 <style lang="scss">
 :root {
-  --main-bg-color: #3867d6;
+  --main-bg-color: #4b6584;
   --main-text-color: #FFF;
 }
 

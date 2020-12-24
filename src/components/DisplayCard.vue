@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-white border-opacity-40 rounded-md p-4 max-w-prose">
+  <div class="border border-white border-opacity-40 rounded-md p-8 max-w-prose">
     <component
       v-for="(component, index) in components"
       :key="index"
