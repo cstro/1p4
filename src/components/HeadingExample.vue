@@ -14,7 +14,7 @@
         </div>
         <div class="pl-4 pb-2 border-white border-opacity-40 border-b">
           <div class="text-sm" >font (scale)</div>
-          <span class="text-xl">???</span>
+          <span class="text-xl">{{ fontScale }}%</span>
         </div>
         <div class="pr-4 pt-2 border-white border-opacity-40 border-r">
           <div class="text-sm" >line height</div>
@@ -33,6 +33,9 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { HeadingData } from '@/types';
 import round from '@/utils/round';
+import { namespace } from 'vuex-class';
+
+const Ratio = namespace('Ratio');
 
 interface HeadingStyle {
   fontSize: string;
@@ -42,6 +45,9 @@ interface HeadingStyle {
 @Component
 export default class HeadingExample extends Vue {
   @Prop() private data!: HeadingData;
+
+  @Ratio.State
+  private baseSize!: number
 
   get style(): HeadingStyle {
     const { fontSize, lineHeight } = this.data;
@@ -55,6 +61,10 @@ export default class HeadingExample extends Vue {
   get pixelLineHeight(): number {
     const { fontSize, lineHeight } = this.data;
     return round(fontSize * lineHeight, 3);
+  }
+
+  get fontScale(): number {
+    return round((this.data.fontSize / this.baseSize) * 100, 2);
   }
 }
 </script>

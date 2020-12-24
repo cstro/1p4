@@ -3,35 +3,25 @@
     <label class="text-sm mb-2">{{ label }}</label>
     <input
       :step="step"
-      class="w-20 text-2xl text-white bg-transparent border-b border-gray-100 text-center"
-      v-model="value"
       type="number"
+      class="w-20 text-2xl text-white bg-transparent border-b border-gray-100 text-center"
+      :value="value"
+      @input="(event) => $emit('change', Number(event.target.value))"
     />
   </div>
 </template>
 
 <script lang="ts">
 import {
-  Component, Prop, Vue, Watch,
+  Component, Prop, Vue,
 } from 'vue-property-decorator';
 
 @Component
 export default class RatioPanelInput extends Vue {
-  @Prop() private initial!: number
+  @Prop() private value!: number
 
   @Prop() private label!: string
 
   @Prop({ default: 1 }) private step!: number
-
-  private value = 0
-
-  created() {
-    this.value = this.initial;
-  }
-
-  @Watch('value')
-  onValueChanged(value: number) {
-    this.$emit('change', value);
-  }
 }
 </script>
