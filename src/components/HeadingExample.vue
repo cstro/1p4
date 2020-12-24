@@ -40,7 +40,7 @@ interface HeadingStyle {
 }
 
 @Component
-export default class HelloWorld extends Vue {
+export default class HeadingExample extends Vue {
   @Prop() private data!: HeadingData;
 
   get style(): HeadingStyle {
