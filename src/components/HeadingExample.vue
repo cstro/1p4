@@ -1,12 +1,16 @@
 <template>
-  <div class="flex py-8 border-t border-opacity-40 border-white">
+  <div class="flex flex-col-reverse md:flex-row py-8 border-t border-opacity-40 border-white">
     <div class="flex-none">
       Lv. {{ data.level }}
     </div>
-    <component :is="`h${data.level}`" :style="style" class="flex-1 mx-4 leading-none">
+    <component
+      :is="`h${data.level}`"
+      :style="style"
+      class="flex-1 mx-0 mb-4 md:mx-4 md:mb-0 leading-none"
+    >
       {{ data.text }}
     </component>
-    <div class="flex-none w-52">
+    <div class="flex-none w-52 mb-4 md:mb-0">
       <div class="grid grid-cols-2">
         <div class="pr-4 pb-2 border-white border-opacity-40 border-r border-b">
           <div class="text-sm">font</div>
