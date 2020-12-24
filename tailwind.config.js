@@ -12,6 +12,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    fontFamily: {
+      serif: ['Lato', 'sans-serif'],
+    },
   },
   variants: {
     extend: {},

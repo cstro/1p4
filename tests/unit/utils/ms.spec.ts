@@ -16,7 +16,7 @@ const cases = [
 
 describe('ms util', () => {
   it.each(cases)(
-    'given value %p, base %p and scale $p,r returns $p', (
+    'given value %p, base %p and scale $p, returns $p', (
       value, base, scale, result,
     ) => {
       expect(ms(value, base, scale)).toBe(result);

@@ -3,5 +3,4 @@ export interface HeadingData {
   fontSize: number;
   text: string;
   lineHeight: number;
-  verticalPadding: number;
 }

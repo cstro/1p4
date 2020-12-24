@@ -1,19 +1,29 @@
 <template>
-  <div id="app">
+  <div class="max-w-6xl m-auto p-10 font-serif">
 
-    <div>
-      <label>Base font size</label>
-      <input v-model="baseSize" type="number" />
-    </div>
+    <div class="flex mb-10">
+      <RatioPanelInput
+        label="base font size"
+        name="baseSize"
+        :initial="16"
+        @change="value => baseSize = value"
+      />
 
-    <div>
-      <label>Modular scale</label>
-      <input v-model="scale" />
-    </div>
+      <RatioPanelInput
+        label="modular scale"
+        name="baseSize"
+        :initial="1.4"
+        :step="0.1"
+        @change="value => scale = value"
+      />
 
-    <div>
-      <label>Vertical padding</label>
-      <input v-model="verticalPadding" type="number" />
+      <RatioPanelInput
+        label="line height"
+        name="lineHeight"
+        :initial="1.1"
+        :step="0.1"
+        @change="value => minLineHeight = value"
+      />
     </div>
 
     <HeadingExample v-for="heading in headings" :key="heading.level" :data="heading"/>
@@ -24,11 +34,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { HeadingData } from '@/types';
 import HeadingExample from '@/components/HeadingExample.vue';
+import RatioPanelInput from '@/components/RatioPanelInput.vue';
 import ms from '@/utils/ms';
 
 @Component({
   components: {
     HeadingExample,
+    RatioPanelInput,
   },
 })
 export default class App extends Vue {
@@ -40,8 +52,6 @@ export default class App extends Vue {
 
   private maxLineHeight = 1.618
 
-  private verticalPadding = 40
-
   get headings(): Array<HeadingData> {
     const numberOfHeadings = 6;
     const headings = [];
@@ -52,7 +62,6 @@ export default class App extends Vue {
         fontSize: ms(numberOfHeadings - i, this.baseSize, this.scale),
         lineHeight: this.minLineHeight,
         text: 'Some example text',
-        verticalPadding: this.verticalPadding,
       };
 
       headings.push(heading);
@@ -62,3 +71,15 @@ export default class App extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+:root {
+  --main-bg-color: #fc5c65;
+  --main-text-color: #FFF;
+}
+
+html {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+</style>
