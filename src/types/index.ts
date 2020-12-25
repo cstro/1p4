@@ -6,13 +6,13 @@ export interface HeadingData {
 }
 
 export enum DisplayCardElementType {
-  Eyebrow = 'DisplayCardEyebrow',
-  Header = 'DisplayCardHeader',
-  Subheader = 'DisplayCardSubheader',
-  Meta = 'DisplayCardMeta',
-  ParagraphHeader = 'DisplayCardParagraphHeader',
-  Body = 'DisplayCardBody',
-  Caption = 'DisplayCardCaption',
+  Eyebrow = 'eyebrow',
+  Header = 'header',
+  Subheader = 'subheader',
+  Meta = 'meta',
+  ParagraphHeader = 'paragraph header',
+  Body = 'body',
+  Caption = 'caption',
 }
 
 export interface DisplayCardElement {
@@ -21,4 +21,24 @@ export interface DisplayCardElement {
   config: {
     headerLevel: number;
   };
+}
+
+export enum FontSizeLevel {
+  Eyebrow = 'eyebrow',
+  Header = 'header',
+  Subheader = 'subheader',
+  Meta = 'meta',
+  ParagraphHeader = 'paragraph header',
+  Body = 'body',
+  Caption = 'caption',
+}
+
+export interface FontSizeLevels {
+  [FontSizeLevel.Eyebrow]: number;
+  [FontSizeLevel.Header]: number;
+  [FontSizeLevel.Subheader]: number;
+  [FontSizeLevel.Meta]: number;
+  [FontSizeLevel.ParagraphHeader]: number;
+  [FontSizeLevel.Body]: number;
+  [FontSizeLevel.Caption]: number;
 }

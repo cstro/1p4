@@ -1,6 +1,7 @@
 import {
   VuexModule, Module, Mutation, Action,
 } from 'vuex-module-decorators';
+import { FontSizeLevel } from '@/types';
 
 @Module({ namespaced: true })
 class Ratio extends VuexModule {
@@ -9,6 +10,16 @@ class Ratio extends VuexModule {
   public scale = 1.4
 
   public lineHeight = 1.1
+
+  private fontSizeLevels = {
+    [FontSizeLevel.Eyebrow]: 2,
+    [FontSizeLevel.Header]: 5,
+    [FontSizeLevel.Subheader]: 3,
+    [FontSizeLevel.Meta]: 1,
+    [FontSizeLevel.ParagraphHeader]: 2,
+    [FontSizeLevel.Body]: 2,
+    [FontSizeLevel.Caption]: 1,
+  }
 
   @Mutation
   public setBaseSize(newBaseSize: number): void {
@@ -25,6 +36,11 @@ class Ratio extends VuexModule {
     this.lineHeight = newLineHeight;
   }
 
+  @Mutation
+  public setFontSizeLevel({ type, newLevel }: { type: FontSizeLevel; newLevel: number }): void {
+    this.fontSizeLevels[type] = newLevel;
+  }
+
   @Action
   public updateBaseSize(newBaseSize: number): void {
     this.context.commit('setBaseSize', newBaseSize);
@@ -38,6 +54,11 @@ class Ratio extends VuexModule {
   @Action
   public updateLineHeight(newLineHeight: number): void {
     this.context.commit('setLineHeight', newLineHeight);
+  }
+
+  @Action
+  public updateFontSizeLevel(payload: { type: FontSizeLevel; newLevel: number }): void {
+    this.context.commit('setFontSizeLevel', payload);
   }
 }
 
