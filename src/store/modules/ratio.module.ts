@@ -1,7 +1,7 @@
 import {
   VuexModule, Module, Mutation, Action,
 } from 'vuex-module-decorators';
-import { FontSizeLevel } from '@/types';
+import { FontSizeLevel, FontSizeLevels } from '@/types';
 
 @Module({ namespaced: true })
 class Ratio extends VuexModule {
@@ -9,15 +9,27 @@ class Ratio extends VuexModule {
 
   public scale = 1.4
 
-  public lineHeight = 1.1
+  public bodyLineHeight = 1.618
 
-  private fontSizeLevels = {
+  public displayLineHeight = 1.1
+
+  public fontSizeLevels: FontSizeLevels = {
     [FontSizeLevel.Eyebrow]: 2,
     [FontSizeLevel.Header]: 5,
     [FontSizeLevel.Subheader]: 3,
     [FontSizeLevel.Meta]: 1,
     [FontSizeLevel.ParagraphHeader]: 2,
     [FontSizeLevel.Body]: 2,
+    [FontSizeLevel.Caption]: 1,
+  }
+
+  public lineHeightLevels = {
+    [FontSizeLevel.Eyebrow]: 1,
+    [FontSizeLevel.Header]: 2,
+    [FontSizeLevel.Subheader]: 2,
+    [FontSizeLevel.Meta]: 1,
+    [FontSizeLevel.ParagraphHeader]: 1,
+    [FontSizeLevel.Body]: 1,
     [FontSizeLevel.Caption]: 1,
   }
 
@@ -32,8 +44,13 @@ class Ratio extends VuexModule {
   }
 
   @Mutation
-  public setLineHeight(newLineHeight: number): void {
-    this.lineHeight = newLineHeight;
+  public setBodyLineHeight(newBodyLineHeight: number): void {
+    this.bodyLineHeight = newBodyLineHeight;
+  }
+
+  @Mutation
+  public setMaxLineHeight(newDisplayLineHeight: number): void {
+    this.displayLineHeight = newDisplayLineHeight;
   }
 
   @Mutation
@@ -52,8 +69,13 @@ class Ratio extends VuexModule {
   }
 
   @Action
-  public updateLineHeight(newLineHeight: number): void {
-    this.context.commit('setLineHeight', newLineHeight);
+  public updateBodyLineHeight(newBodyLineHeight: number): void {
+    this.context.commit('setBodyLineHeight', newBodyLineHeight);
+  }
+
+  @Action
+  public updateDisplayLineHeight(newDisplayLineHeight: number): void {
+    this.context.commit('setDisplayLineHeight', newDisplayLineHeight);
   }
 
   @Action

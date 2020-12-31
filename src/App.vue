@@ -11,7 +11,6 @@
     <div class="flex flex-col sm:flex-row mb-10 -ml-8">
       <RatioPanelInput
         label="base font size"
-        name="baseSize"
         :value="baseSize"
         @change="updateBaseSize"
       />
@@ -24,11 +23,17 @@
       />
 
       <RatioPanelInput
-        label="line height"
-        name="lineHeight"
-        :value="lineHeight"
+        label="display line height"
+        :value="displayLineHeight"
         :step="0.1"
-        @change="updateLineHeight"
+        @change="updateDisplayLineHeight"
+      />
+
+      <RatioPanelInput
+        label="body line height"
+        :value="bodyLineHeight"
+        :step="0.1"
+        @change="updateBodyLineHeight"
       />
     </div>
     <div v-if="cardMode">
@@ -69,9 +74,12 @@ export default class App extends Vue {
   private scale!: number
 
   @Ratio.State
-  private lineHeight!: number
+  private bodyLineHeight!: number
 
-  private cardMode = false
+  @Ratio.State
+  private displayLineHeight!: number
+
+  private cardMode = true
 
   private components: Array<DisplayCardElement> = [
     {
@@ -109,6 +117,13 @@ export default class App extends Vue {
         headerLevel: 4,
       },
     },
+    {
+      type: DisplayCardElementType.Body,
+      content: 'The magnetic field of our planet doesn’t just allow us to find North, it is also an invaluable shield against cosmic radiation. This protection cannot be taken for granted, and there are many concerns about how can we provide the same protection to astronauts on future deep-space missions. A potential answer comes from a peculiar source: fungi.',
+      config: {
+        headerLevel: 4,
+      },
+    },
   ]
 
   get headings(): Array<HeadingData> {
@@ -119,7 +134,7 @@ export default class App extends Vue {
       const heading = {
         level: i,
         fontSize: ms(numberOfHeadings - i, this.baseSize, this.scale),
-        lineHeight: this.lineHeight,
+        lineHeight: this.displayLineHeight,
         text: 'Some example text',
       };
 
@@ -136,7 +151,10 @@ export default class App extends Vue {
   public updateScale!: (newScale: number) => void
 
   @Ratio.Action
-  public updateLineHeight!: (newLineHeight: number) => void
+  public updateBodyLineHeight!: (newBodyLineHeight: number) => void
+
+  @Ratio.Action
+  public updateDisplayLineHeight!: (newDisplayLineHeight: number) => void
 }
 </script>
 

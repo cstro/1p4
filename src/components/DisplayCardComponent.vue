@@ -75,10 +75,16 @@ export default class DisplayCardComponent extends Vue {
   private scale!: number
 
   @Ratio.State
-  private lineHeight!: number
+  private bodyLineHeight!: number
+
+  @Ratio.State
+  private displayLineHeight!: number
 
   @Ratio.State
   private fontSizeLevels!: FontSizeLevels
+
+  @Ratio.State
+  private lineHeightLevels!: FontSizeLevels
 
   private isEditing = false
 
@@ -102,6 +108,14 @@ export default class DisplayCardComponent extends Vue {
 
   get fontSizeLevel(): number {
     return this.fontSizeLevels[this.type];
+  }
+
+  get lineHeightLevel(): number {
+    return this.lineHeightLevels[this.type];
+  }
+
+  get lineHeight(): number {
+    return this.lineHeightLevel === 1 ? this.bodyLineHeight : this.displayLineHeight;
   }
 
   private showModal() {
